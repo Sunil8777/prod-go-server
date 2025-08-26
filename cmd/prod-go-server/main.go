@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"github/sunil/prod-go-server/internal/config"
+	"github/sunil/prod-go-server/internal/http/handlers/student"
 	"log"
 	"log/slog"
 	"net/http"
@@ -17,10 +18,7 @@ func main() {
 
 	router := http.NewServeMux()
 
-	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("This is home api"))
-
-	})
+	router.HandleFunc("POST /api/students", student.New())
 
 	server := http.Server{
 		Addr:    cfg.Addr,
